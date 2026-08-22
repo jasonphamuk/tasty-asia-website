@@ -1,0 +1,41 @@
+.about-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.about-card-left {
+  flex-direction: row;
+}
+
+.about-card-right {
+  flex-direction: row-reverse;
+}
+
+.about-card-image {
+  width: clamp(180px, 30vw, 600px);
+  height: auto;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+  .about-card,
+  .about-card-left,
+  .about-card-right {
+    flex-direction: column;
+  }
+
+  .about-card-image {
+    width: min(100%, 400px);
+  }
+
+}

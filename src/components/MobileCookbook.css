@@ -1,0 +1,244 @@
+/* =========================================
+   MOBILE COOKBOOK
+========================================= */
+
+.mobile-cookbook {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+/* =========================================
+   NOTEPAD
+========================================= */
+
+.mobile-cookbook-notepad {
+  width: 100%;
+  box-sizing: border-box;
+
+  background: var(--color-surface, #ffffff);
+
+  border-radius: 14px;
+
+  padding: 1.25rem;
+
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.08);
+
+  overflow: hidden;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.mobile-recipe-header {
+  padding-bottom: 1rem;
+}
+
+.mobile-recipe-header h1 {
+  margin: 0;
+
+  font-size: 1.8rem;
+  line-height: 1.2;
+}
+
+.mobile-recipe-cuisine {
+  margin: 0.35rem 0 0;
+
+  font-weight: 600;
+  opacity: 0.7;
+}
+
+.mobile-recipe-description {
+  margin-top: 1rem;
+
+  line-height: 1.6;
+}
+
+
+/* =========================================
+   SECTION NAVIGATION
+========================================= */
+
+.mobile-recipe-navigation {
+  position: sticky;
+  top: 0;
+
+  z-index: 5;
+
+  display: flex;
+  gap: 0.5rem;
+
+  overflow-x: auto;
+
+  padding: 0.75rem 0;
+
+  margin-bottom: 1rem;
+
+  background: var(
+    --color-surface,
+    #ffffff
+  );
+
+  border-bottom: 1px solid
+    rgba(0, 0, 0, 0.08);
+}
+
+.mobile-recipe-navigation button {
+  flex: 0 0 auto;
+
+  border: none;
+
+  border-radius: 999px;
+
+  padding: 0.5rem 0.85rem;
+
+  background: rgba(0, 0, 0, 0.06);
+
+  font: inherit;
+
+  cursor: pointer;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================
+   SECTIONS
+========================================= */
+
+.mobile-recipe-section {
+  scroll-margin-top: 4.5rem;
+
+  padding: 1rem 0;
+
+  border-bottom: 1px solid
+    rgba(0, 0, 0, 0.08);
+}
+
+.mobile-recipe-section:last-child {
+  border-bottom: none;
+}
+
+.mobile-recipe-section h2 {
+  margin-top: 0;
+
+  font-size: 1.35rem;
+}
+
+.mobile-recipe-section h3 {
+  margin-top: 1.25rem;
+}
+
+.mobile-recipe-section h4 {
+  margin-bottom: 0.5rem;
+}
+
+
+/* =========================================
+   RECIPE IMAGE
+========================================= */
+
+.mobile-recipe-image {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  border-radius: 10px;
+
+  margin-bottom: 1rem;
+}
+
+
+/* =========================================
+   RECIPE INFORMATION
+========================================= */
+
+.mobile-recipe-info {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 0.75rem;
+
+  margin-top: 1rem;
+}
+
+.mobile-recipe-info div {
+  display: flex;
+
+  flex-direction: column;
+
+  padding: 0.75rem;
+
+  border-radius: 10px;
+
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.mobile-recipe-info span {
+  font-size: 0.8rem;
+
+  opacity: 0.65;
+}
+
+.mobile-recipe-info strong {
+  margin-top: 0.15rem;
+}
+
+
+/* =========================================
+   LISTS
+========================================= */
+
+.mobile-recipe-section ul,
+.mobile-recipe-section ol {
+  padding-left: 1.4rem;
+
+  line-height: 1.6;
+}
+
+.mobile-recipe-section li {
+  margin-bottom: 0.65rem;
+}
+
+
+/* =========================================
+   EXTRA CONTENT
+========================================= */
+
+.mobile-recipe-extra {
+  margin-top: 1.25rem;
+
+  padding-top: 1rem;
+
+  border-top: 1px solid
+    rgba(0, 0, 0, 0.06);
+}
+
+/* =========================================
+   RECIPE CONTENT TRANSITION
+========================================= */
+
+.mobile-cookbook-content {
+  width: 100%;
+  box-sizing: border-box;
+
+  transition:
+    transform 300ms ease,
+    opacity 300ms ease;
+}
+
+
+/*
+ * Recipe leaving the screen.
+ */
+
+.mobile-cookbook-transitioning {
+  transform: translateY(-24px);
+  opacity: 0;
+}

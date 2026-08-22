@@ -1,0 +1,224 @@
+/* =========================================
+   FILTER CARD
+========================================= */
+
+.filter-card {
+  width: 100%;
+
+  padding: 1.25rem;
+
+  border-radius: 14px;
+
+  background: var(--color-surface, #ffffff);
+
+  box-shadow: 0 8px 12px -10px rgba(0, 0, 0, 0.35);
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.filter-card-header {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 1rem;
+
+  padding-bottom: 0.75rem;
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+
+.filter-card-header h3 {
+  margin: 0;
+
+  font-size: 1.25rem;
+}
+
+
+.filter-clear-button {
+  padding: 0.4rem 0.75rem;
+
+  border: none;
+  border-radius: 6px;
+
+  background: transparent;
+
+  font-size: 0.85rem;
+
+  cursor: pointer;
+
+  opacity: 0.7;
+
+  transition:
+    background-color 0.2s ease,
+    opacity 0.2s ease;
+}
+
+
+.filter-clear-button:hover {
+  background: rgba(0, 0, 0, 0.07);
+
+  opacity: 1;
+}
+
+
+/* =========================================
+   FILTER SECTIONS
+========================================= */
+
+.filter-section {
+  margin-bottom: 1.25rem;
+}
+
+
+.filter-section:last-child {
+  margin-bottom: 0;
+}
+
+
+.filter-section h4 {
+  margin: 0 0 0.65rem;
+
+  font-size: 0.95rem;
+
+  font-weight: 700;
+}
+
+
+/* =========================================
+   OPTIONS
+========================================= */
+
+.filter-options {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 0.45rem 0.75rem;
+}
+
+
+/* =========================================
+   INDIVIDUAL OPTION
+========================================= */
+
+.filter-option {
+  display: flex;
+
+  align-items: center;
+
+  gap: 0.5rem;
+
+  min-width: 0;
+
+  padding: 0.35rem 0;
+
+  cursor: pointer;
+
+  font-size: 0.9rem;
+
+  line-height: 1.2;
+}
+
+
+.filter-option span {
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================
+   CHECKBOXES / RADIO BUTTONS
+========================================= */
+
+.filter-option input {
+  flex: 0 0 auto;
+
+  width: 17px;
+  height: 17px;
+
+  margin: 0;
+
+  cursor: pointer;
+
+  accent-color: var(--color-primary);
+}
+
+
+/* =========================================
+   HOVER
+========================================= */
+
+.filter-option:hover {
+  opacity: 0.75;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 900px) {
+
+  .filter-options {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+  }
+
+}
+
+
+/* =========================================
+   SMALL TABLET
+========================================= */
+
+@media (max-width: 700px) {
+
+  .filter-card {
+    padding: 1rem;
+
+    border-radius: 10px;
+
+    box-shadow: none;
+  }
+
+
+  .filter-options {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 0.3rem 0.75rem;
+  }
+
+
+  .filter-option {
+    padding: 0.45rem 0;
+
+    font-size: 0.9rem;
+  }
+
+}
+
+
+/* =========================================
+   VERY SMALL MOBILE
+========================================= */
+
+@media (max-width: 400px) {
+
+  .filter-options {
+    grid-template-columns: 1fr;
+  }
+
+}

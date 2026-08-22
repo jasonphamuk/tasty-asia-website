@@ -1,0 +1,587 @@
+/* =========================================
+   PAGE TURN
+========================================= */
+
+.page-turn {
+  width: 100%;
+  padding: clamp(2rem, 4vw, 5rem) 0;
+}
+
+
+/* =========================================
+   BOOK
+========================================= */
+
+.book {
+  width: 100%;
+  height: clamp(500px, 60vw, 750px);
+
+  margin: 0 auto;
+
+  position: relative;
+
+  perspective: 2500px;
+
+  background-color: #e8dfd0;
+
+  border-radius: 6px;
+
+  box-shadow:
+    0 15px 40px rgba(0, 0, 0, 0.18);
+
+  transform-style: preserve-3d;
+
+  overflow: visible;
+}
+
+
+/* =========================================
+   SPREADS
+========================================= */
+
+.recipe-spread,
+.next-spread,
+.previous-spread {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  transform-style: preserve-3d;
+}
+
+
+/* =========================================
+   BASE LAYER ORDER
+========================================= */
+
+/*
+ * Normally:
+ *
+ * Current spread
+ *      ↓
+ * Destination spreads underneath
+ */
+
+.next-spread,
+.previous-spread {
+  z-index: 1;
+
+  pointer-events: none;
+}
+
+
+.recipe-spread {
+  z-index: 5;
+}
+
+
+/* =========================================
+   FORWARD TURN
+========================================= */
+
+/*
+ * When moving forward:
+ *
+ * Current RIGHT is being physically turned.
+ *
+ * Current LEFT must remain visible.
+ *
+ * Next RIGHT must already be visible
+ * underneath the turning page.
+ *
+ * Next LEFT is NOT displayed independently
+ * because it is the BACK of the turning page.
+ */
+
+
+/*
+ * Move the NEXT spread above the current
+ * spread during the animation.
+ */
+
+.book:has(.turning-page-next) .next-spread {
+  z-index: 10;
+}
+
+
+/*
+ * But only expose NEXT RIGHT.
+ */
+
+.book:has(.turning-page-next)
+  .next-spread
+  .book-page-left {
+  visibility: hidden;
+}
+
+
+/*
+ * Current RIGHT disappears underneath
+ * the turning page.
+ */
+
+.recipe-spread.is-turning-next
+  .book-page-right {
+  visibility: hidden;
+}
+
+
+/*
+ * Current LEFT remains visible.
+ */
+
+.recipe-spread.is-turning-next
+  .book-page-left {
+  visibility: visible;
+}
+
+.book-page,
+.page-front,
+.page-back {
+  padding: 1rem;
+}
+
+.recipe-page ul,
+.recipe-page ol {
+  padding-left: 1.5rem;
+  margin: 0;
+}
+
+.recipe-page li {
+  padding-left: 0.25rem;
+}
+
+
+
+/* =========================================
+   BACKWARD TURN
+========================================= */
+
+/*
+ * Mirror of the forward animation.
+ *
+ * Current LEFT is physically turning.
+ *
+ * Current RIGHT remains visible.
+ *
+ * Previous LEFT is already underneath
+ * and must be visible.
+ *
+ * Previous RIGHT is the BACK of the
+ * physical turning page.
+ */
+
+
+/*
+ * Bring the PREVIOUS spread above
+ * the current spread.
+ */
+
+.book:has(.turning-page-previous) .previous-spread {
+  z-index: 10;
+}
+
+
+/*
+ * Only expose PREVIOUS LEFT.
+ */
+
+.book:has(.turning-page-previous)
+  .previous-spread
+  .book-page-right {
+  visibility: hidden;
+}
+
+
+/*
+ * Current LEFT disappears underneath
+ * the turning page.
+ */
+
+.recipe-spread.is-turning-previous
+  .book-page-left {
+  visibility: hidden;
+}
+
+
+/*
+ * Current RIGHT remains visible.
+ */
+
+.recipe-spread.is-turning-previous
+  .book-page-right {
+  visibility: visible;
+}
+
+/* =========================================
+   INGREDIENTS
+========================================= */
+
+.recipe-ingredients {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  column-gap: 2rem;
+  row-gap: 0.4rem;
+
+  padding-left: 1.5rem;
+}
+
+/* =========================================
+   Recipe Info
+========================================= */
+
+.recipe-info {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.recipe-info > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.recipe-info span {
+  font-size: 0.75rem;
+  opacity: 0.6;
+}
+
+.recipe-info strong {
+  font-size: 0.9rem;
+}
+
+/* =========================================
+   BOOK PAGES
+========================================= */
+
+.book-page {
+  position: absolute;
+
+  top: 0;
+
+  width: 50%;
+  height: 100%;
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+
+  background-color: #fffdf8;
+
+  backface-visibility: hidden;
+
+  -webkit-backface-visibility: hidden;
+}
+
+.recipe-page p {
+  font-size: 1rem;
+}
+
+.recipe-page li {
+  font-size: 0.9rem;
+}
+
+
+/* =========================================
+   LEFT
+========================================= */
+
+.book-page-left {
+  left: 0;
+
+  border-radius:
+    6px 0 0 6px;
+
+  box-shadow:
+    inset -12px 0 20px
+    rgba(0, 0, 0, 0.05);
+}
+
+
+/* =========================================
+   RIGHT
+========================================= */
+
+.book-page-right {
+  right: 0;
+
+  border-radius:
+    0 6px 6px 0;
+
+  box-shadow:
+    inset 12px 0 20px
+    rgba(0, 0, 0, 0.05);
+}
+
+
+/* =========================================
+   TURNING PAGE
+========================================= */
+
+.turning-page {
+  position: absolute;
+
+  top: 0;
+
+  width: 50%;
+  height: 100%;
+
+  z-index: 30;
+
+  transform-style: preserve-3d;
+
+  pointer-events: none;
+}
+
+
+/* =========================================
+   NEXT
+   RIGHT → LEFT
+========================================= */
+
+.turning-page-next {
+  left: 50%;
+
+  transform-origin: left center;
+}
+
+
+/* =========================================
+   PREVIOUS
+   LEFT → RIGHT
+========================================= */
+
+.turning-page-previous {
+  left: 0;
+
+  transform-origin: right center;
+}
+
+
+/* =========================================
+   TURNING PAGE SIDES
+========================================= */
+
+.page-front,
+.page-back {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+
+  background-color: #fffdf8;
+
+  backface-visibility: hidden;
+
+  -webkit-backface-visibility: hidden;
+
+  transform-style: preserve-3d;
+}
+
+
+/* =========================================
+   FRONT
+========================================= */
+
+.page-front {
+  z-index: 2;
+}
+
+
+/* =========================================
+   BACK
+========================================= */
+
+.page-back {
+  z-index: 1;
+
+  transform: rotateY(180deg);
+}
+
+
+/* =========================================
+   NEXT ANIMATION
+========================================= */
+
+.turning-page-next.is-turning {
+  animation:
+    flip-next
+    0.8s
+    ease-in-out
+    forwards;
+}
+
+
+@keyframes flip-next {
+
+  from {
+    transform: rotateY(0deg);
+  }
+
+  to {
+    transform: rotateY(-180deg);
+  }
+
+}
+
+
+/* =========================================
+   PREVIOUS ANIMATION
+========================================= */
+
+.turning-page-previous.is-turning {
+  animation:
+    flip-previous
+    0.8s
+    ease-in-out
+    forwards;
+}
+
+
+@keyframes flip-previous {
+
+  from {
+    transform: rotateY(0deg);
+  }
+
+  to {
+    transform: rotateY(180deg);
+  }
+
+}
+
+
+/* =========================================
+   SPINE
+========================================= */
+
+.book-spine {
+  position: absolute;
+
+  left: 50%;
+  top: 0;
+
+  width: 2px;
+  height: 100%;
+
+  transform:
+    translateX(-50%);
+
+  background-color:
+    rgba(0, 0, 0, 0.12);
+
+  z-index: 50;
+
+  pointer-events: none;
+}
+
+
+/* =========================================
+   CONTROLS
+========================================= */
+
+.page-controls {
+  width: min(90%, 1200px);
+
+  margin: 2rem auto 0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+}
+
+
+.page-controls button {
+  border: none;
+
+  background: none;
+
+  padding: 0.75rem 1rem;
+
+  font: inherit;
+
+  cursor: pointer;
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+.page-controls button:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+
+.page-controls button:disabled {
+  opacity: 0.3;
+
+  cursor: not-allowed;
+}
+
+
+.page-controls span {
+  font-size: 0.9rem;
+
+  opacity: 0.6;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+  .book {
+    width: 92%;
+
+    height: 600px;
+  }
+
+
+  .book-page {
+    padding: 1rem;
+    width: 100%;
+  }
+
+
+  .book-page-right {
+    display: none;
+  }
+
+
+  .turning-page {
+    width: 100%;
+  }
+
+
+  .turning-page-next,
+  .turning-page-previous {
+    left: 0;
+  }
+
+
+  .book-spine {
+    display: none;
+  }
+
+
+  .page-controls {
+    width: 92%;
+  }
+
+}
