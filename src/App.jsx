@@ -8,6 +8,8 @@ import Merch from "./pages/Merch";
 import About from "./pages/About";
 import Cookbook from "./pages/Cookbook";
 import Contact from "./pages/Contact";
+import Admin from "./pages/Admin";
+
 
 function App() {
   return (
@@ -21,6 +23,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/cookbook" element={<Cookbook />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/admin" element={<Admin />} />
         </Routes>
       </div>
     </BrowserRouter>
